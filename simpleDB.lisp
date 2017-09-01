@@ -35,3 +35,10 @@
      (if (not (y-or-n-p "Another? [y/n]: ")) (return))))
 
 (add-cds)
+(defun save-db (filename)
+  (with-open-file (out filename
+		       :directions :output
+		       :if-exists :supersede)
+    (with-standard-io-syntax
+      (print *db* out))))
+
